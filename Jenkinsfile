@@ -48,6 +48,7 @@ pipeline {
         stage("build"){
             steps{
                 sh 'docker build -t changweicw/saveme:latest .'
+                sh 'docker run -d -p 127.0.0.1:5000:5000 --name saveme changweicw/saveme:latest'
             }
         }
         
