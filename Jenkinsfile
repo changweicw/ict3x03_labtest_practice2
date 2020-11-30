@@ -26,7 +26,6 @@ pipeline {
             agent {
                 docker {
                     image 'python:3.8'
-                    args '--env-file /var/jenkins_home/.env --shm-size 2g'
                 }
             }
             steps {
