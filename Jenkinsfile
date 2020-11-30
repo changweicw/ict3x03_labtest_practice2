@@ -17,7 +17,7 @@ pipeline {
                 sh 'wget https://github.com/mozilla/geckodriver/releases/download/v0.25.0/geckodriver-v0.25.0-linux64.tar.gz '
                 sh 'tar xzf geckodriver-v0.25.0-linux64.tar.gz'
                 sh 'chmod +x geckodriver'
-                // sh 'mv geckodriver /usr/bin/geckodriver'
+                sh 'mv geckodriver /usr/bin/geckodriver'
                 sh 'apt update'
                 sh 'apt install firefox-esr -y'
                 sh 'python SeleniumTesting/seleniumscript.py '
