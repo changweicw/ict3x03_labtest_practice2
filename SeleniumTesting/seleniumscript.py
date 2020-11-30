@@ -22,4 +22,4 @@ driver = webdriver.Firefox(
     options=options, capabilities=cap, firefox_binary=firefox_binary)
 driver.get("http://34.126.115.32:5000/")
 time.sleep(3)
-assert driver.title == 'Title'
+assert driver.title == 'SaveMe'
