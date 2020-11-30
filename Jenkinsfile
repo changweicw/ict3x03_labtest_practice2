@@ -1,19 +1,3 @@
-
-		// stage('OWASP DependencyCheck') {
-		// 	steps {
-		// 		dependencyCheck additionalArguments: '--format HTML --format XML', odcInstallation: 'Default'
-		// 	}
-		// }
-
-       
-    
-    // post {
-	// 	success {
-	// 		dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-	// 	}
-	// }
-
-
 pipeline {
     agent any
     stages {
@@ -49,5 +33,18 @@ pipeline {
                 sh 'docker run -d -p 5000:5000 --name revision saveme:latest'
             }
         }
+        
+		stage('OWASP DependencyCheck') {
+			steps {
+				dependencyCheck additionalArguments: '--format HTML --format XML', odcInstallation: 'Default'
+			}
+		}
+
     }
+        
+    post {
+		success {
+			dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+		}
+	}
 }
