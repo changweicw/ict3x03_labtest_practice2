@@ -55,7 +55,7 @@ pipeline {
             steps{
                 sh 'docker ps -f name=saveme | grep -o "saveme" && docker kill $(docker ps -f name=saveme | grep -o "saveme")'
                 sh "printf 'y' | docker container prune"
-                sh 'docker run -d -p 127.0.0.1:5000:5000 --name saveme --env-file /var/jenkins_home/.env changweicw/saveme:latest'
+                sh 'docker run -d -p 127.0.0.1:5000:5000 --name saveme changweicw/saveme:latest'
             }
         }
 
