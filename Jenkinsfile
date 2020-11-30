@@ -20,7 +20,7 @@ pipeline {
                 sh 'mv geckodriver /usr/bin/geckodriver'
                 sh 'apt update'
                 sh 'apt install firefox-esr -y'
-                sh 'python SeleniumTesting/seleniumscript.py '
+                // sh 'python SeleniumTesting/seleniumscript.py '
             }
         }
 
