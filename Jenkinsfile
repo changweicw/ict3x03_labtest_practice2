@@ -17,7 +17,7 @@
 pipeline {
     agent any
     stages {
-         stage('Static Analysis') {
+        stage('Static Analysis') {
             steps {
                 echo 'Run the static analysis to the code' 
             }
@@ -42,13 +42,12 @@ pipeline {
         }
 
         stage('Build'){
-                    steps {
-                        sh 'docker build -t saveme:latest .'
-                        sh 'docker ps -f name=revision | grep -o "revision" && docker kill $(docker ps -f name=revision | grep -o "revision")'
-                        sh "printf 'y' | docker container prune"
-                        sh 'docker run -d -p 5000:5000 --name revision saveme:latest'
-                    }
-                }
-
+            steps {
+                sh 'docker build -t saveme:latest .'
+                sh 'docker ps -f name=revision | grep -o "revision" && docker kill $(docker ps -f name=revision | grep -o "revision")'
+                sh "printf 'y' | docker container prune"
+                sh 'docker run -d -p 5000:5000 --name revision saveme:latest'
+            }
+        }
     }
 }
