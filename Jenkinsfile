@@ -41,20 +41,14 @@ pipeline {
             }
         }
 
-        stage("build"){
-            steps{
-                sh 'docker build -t changweicw/saveme:latest .'
-                sh 'docker run -p 5000:5000 --name saveme changweicw/saveme:latest'
-            }
-        }
-        
-        stage("deploy"){
-            steps{
-                sh 'docker ps -f name=saveme | grep -o "saveme" && docker kill $(docker ps -f name=saveme | grep -o "saveme")'
-                sh "printf 'y' | docker container prune"
-                sh 'docker run -d -p 127.0.0.1:5000:5000 --name saveme changweicw/saveme:latest'
-            }
-        }
+        stage('Build'){
+                    steps {
+                        sh 'docker build -t saveme:latest .'
+                        sh 'docker ps -f name=revision | grep -o "revision" && docker kill $(docker ps -f name=revision | grep -o "revision")'
+                        sh "printf 'y' | docker container prune"
+                        sh 'docker run -d -p 5000:5000 --name revision saveme:latest'
+                    }
+                }
 
     }
 }
